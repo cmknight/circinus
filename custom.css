@@ -1,0 +1,82 @@
+.cmkCss {
+    /*display: none;*/
+}
+.dimGrey {
+  background-color: #3D3C33;
+}
+
+.dimGreyDarker {
+  background-color: #3C3335;
+}
+
+.slateGrey {
+  background-color: #5D5B5E;
+}
+
+.lightSlateGrey {
+  background-color: #959499;
+}
+
+.lotusui30_body .lotusFrame {
+  /* background-color: #959499; */
+}
+
+.lightSteelBlue {
+  background-color: #C1C0C5;
+}
+
+body.lotusui30.lotusmain {
+    /* background: url(/com.ibm.lconn.core.styles/images/Connections Portal Background.jpg); */
+}
+
+body.lotusui30.lotusLogin2 {
+    background: url(/com.ibm.lconn.core.styles/images/Connections Portal Background.jpg);
+    background-size: 100%;
+}
+
+.lotusui30 .lotusBanner .lotusLogo {
+    margin-right: 20px;
+    background: url(/com.ibm.lconn.core.styles/images/logoWhite.png) center / contain no-repeat;
+    width: 300px;
+    margin-top: 5px;
+}
+.lotusui30 .lotusBanner {
+    font-size: small;
+}
+
+.lotusui30 div.lotusBanner .lotusLogo .lotusAltText {
+    text-indent: -9000px;
+}
+
+ul#headerMenuContainer li.buttonCircleNavLi {
+  padding-right: 10px;
+}
+ul#headerMenuContainer a.buttonCircNav {
+  padding-left: 12px;
+  padding-right: 12px;
+  background-color: #1c5c7f;
+  border-radius: 5px;
+  color: white;
+  padding: .5em;
+  text-decoration: none;
+  margin-top: 6px;
+}
+.customLoginHeading {
+
+}
+.lotusui30 div.lotusBanner .lotusRightCorner {
+  background:#25363f;
+}
+
+.navbar.navbarCircinus {
+  margin-bottom:0px;
+}
+.bg-circinusBlack {
+  background:black;
+}
+
+@media (min-width: 1500px) {
+.lotusFrame .container {
+      max-width: 1700px;
+    }
+}
