@@ -1,0 +1,630 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Copyright IBM Corp. 2001, 2017  All Rights Reserved.              --><config xmlns="http://www.ibm.com/widgets-config" id="widgets" xmlns:tns="http://www.ibm.com/widgets-config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.ibm.com/widgets-config widgets-config.xsd">
+<!--
+    Example widgets: not supported officially but can be used as examples
+    <widgetDef defId="AdditionalInfo" modes="view edit" showInPalette="false" url="{webresourcesSvcRef}/web/lconn.comm/widgets/additionalInfo/additional-info.xml?version={version}" />
+
+    <widgetDef defId="FeedReader" modes="view edit" url="{webresourcesSvcRef}/web/lconn.comm/widgets/feedReader/feedreader.xml?version={version}" description="feedReaderDescription"/>
+
+    // a widget with a fullpage mode
+		    <widgetDef defId="HelloWorld" primaryWidget="false" modes="view fullpage edit search"  url="{webresourcesSvcRef}/web/lconn.comm/widgets/helloWorld/HelloWorld.xml?version={version}"/>
+
+    // [Communities Only] a widget with an external jsp as a full page
+		    <widgetDef defId="HelloWorld" primaryWidget="false" modes="view edit search"  url="{webresourcesSvcRef}/web/lconn.comm/widgets/helloWorld/HelloWorld.xml?version={version}"
+        navBarLink="{communitiesSvcRef}/comm.widgets/helloWorld/HelloWorld.jsp?resourceId={resourceId}&amp;version={version}"/>
+-->
+
+    <resource type="common">
+        <widgets>
+            <definitions>
+				<widgetDef bundleRefId="lc_clib" defId="librarysummary" iconUrl="{contextRoot}/nav/common/images/iconFiles16.png" modes="fullpage" themes="wpthemeWide" uniqueInstance="true" url="{webresourcesSvcRef}/web/quickr.lw/widgetDefs/DocumentSummary_QCS_Connections.xml?etag={version}">
+				</widgetDef>
+        <widgetDef defId="MTWWidget" modes="view" showInPalette="false" url="/MillionTweetApp/mtwidget.xml" />
+        </widgetDef>
+			</definitions>
+        </widgets>
+    </resource>
+
+    <resource aclServiceImpl="com.ibm.lconn.profiles.internal.acl.ProfilesACLServiceImpl" type="profile" xpathMandatedWidgetForMainPage="/tns:config//tns:resource[@type='profile']/tns:widgets/tns:layout/tns:page[@pageId = 'profilesView']">
+
+        <widgets>
+          <definitions>
+              <widgetDef defId="reportStructure" helpLink="{helpSvcRef}/SSYGQH_KCCI/user/profiles/c_pers_profiles.html" requireAcl="profile.reportTo$profile.reportTo.view" themes="wpthemeNarrow" url="{profilesSvcRef}/widget-catalog/report-chain.xml?version={version}">
+                <itemSet>
+                  <item name="numberOfNameToDisplay" value="4"/>
+                </itemSet>
+              </widgetDef>
+              <widgetDef defId="multiFeedReader" helpLink="{helpSvcRef}/SSYGQH_KCCI/user/profiles/c_pers_profiles.html" themes="wpthemeWide" url="{profilesSvcRef}/widget-catalog/multifeedreader.xml?version={version}">
+                <itemSet>
+                    <item name="numberOfEntriesToDisplay" value="5"/>
+                    <item name="communityResourceId" value="communityResourceId"/>
+                    <item name="communityFeedUrl" value="{communitiesSvcRef}/service/atom/communities/all?userid={userid}&amp;ps=5"/>
+                    <item name="dogearResourceId" value="dogearResourceId"/>
+                    <item name="dogearFeedUrl" value="{dogearSvcRef}/atom?userid={userid}&amp;access=public&amp;sort=date&amp;sortOrder=desc&amp;ps=5&amp;showFavIcon=true{appLangParam}"/>
+                    <item name="blogsResourceId" value="blogsResourceId"/>
+                    <item name="blogsFeedUrl" value="{blogsSvcRef}/atom?userid={userid}&amp;ps=5"/>
+                    <item name="activitiesResourceId" value="activitiesResourceId"/>
+                    <item name="activitiesFeedUrl" value="{activitiesSvcRef}/service/atom2/activities?public=only&amp;userid={userid}&amp;authenticate=no&amp;ps=5"/>
+                    <item name="filesResourceId" value="filesResourceId"/>
+                    <item name="filesFeedUrl" value="{filesSvcRef}/basic/anonymous/api/userlibrary/{userid}/feed?pagesize=5"/>
+                    <item name="forumsResourceId" value="label.personcard.forumlink"/>
+                    <item name="forumsFeedUrl" value="{searchSvcRef}/atom/search/results?component=forums&amp;person={userid}&amp;sortkey=date&amp;sortorder=desc&amp;page=1&amp;ps=5"/>
+                    <item name="wikiResourceId" value="wikiResourceId"/>
+                    <item name="wikiFeedUrl" value="{wikisSvcRef}/basic/anonymous/api/wikis/person/{userid}/feed?pagesize=5"/>
+                </itemSet>
+              </widgetDef>
+             <widgetDef defId="filesReader" helpLink="{helpSvcRef}/SSYGQH_KCCI/user/profiles/c_pers_profiles.html" prerequisite="files" themes="wpthemeWide" url="{profilesSvcRef}/widget-catalog/multifeedreader.xml?version={version}">
+                <itemSet>
+                    <item name="numberOfEntriesToDisplay" value="5"/>
+
+					<item name="filesResourceId" value="filesMineResourceId"/>
+					<item name="filesEval" value="profilesData.loggedInUser.loggedInUserKey === profilesData.displayedUser.key"/>
+                    <item name="filesFeedUrl" value="{filesSvcRef}/form/api/myuserlibrary/feed?pagesize=5"/>
+
+					<item name="filesWithMeResourceId" value="filesWithMeResourceId"/>
+					<item name="filesWithMeEval" value="profilesData.loggedInUser.loggedInUserKey === profilesData.displayedUser.key"/>
+                    <item name="filesWithMeFeedUrl" value="{filesSvcRef}/form/api/documents/shared/feed?pagesize=5"/>
+					<item name="filesWithMeFeedAlternateUrl" value="{filesSvcRef}/app/shares?pivot=withme"/>
+
+					<item name="filesByUserAnonResourceId" value="filesByUserResourceId"/>
+					<item name="filesByUserAnonEval" value="profilesData.loggedInUser.loggedInUserKey === ''"/>
+                    <item name="filesByUserAnonFeedUrl" value="{filesSvcRef}/basic/anonymous/api/userlibrary/{userid}/feed?pagesize=5"/>
+
+					<item name="filesByUserResourceId" value="filesByUserResourceId"/>
+					<item name="filesByUserEval" value="profilesData.loggedInUser.loggedInUserKey !== '' &amp;&amp; profilesData.loggedInUser.loggedInUserKey !== profilesData.displayedUser.key"/>
+                    <item name="filesByUserFeedUrl" value="{filesSvcRef}/form/api/userlibrary/{userid}/feed?pagesize=5"/>
+
+                </itemSet>
+              </widgetDef>
+              <widgetDef defId="friends" helpLink="{helpSvcRef}/SSYGQH_KCCI/user/profiles/t_pers_view_colleagues.html" modes="view fullpage" requireAcl="profile.connection$profile.connection.view" themes="wpthemeNarrow" url="{profilesSvcRef}/widget-catalog/friends.xml?version={version}"/>
+             <widgetDef defId="friendsFullPage" helpLink="{helpSvcRef}/SSYGQH_KCCI/user/profiles/t_pers_view_colleagues.html" modes="fullpage" requireAcl="profile.connection$profile.connection.view" skinType="skinless" themes="wpthemeWide" url="{profilesSvcRef}/widget-catalog/friends-fullpage.xml?version={version}"/>
+              <widgetDef defId="follow" helpLink="{helpSvcRef}/SSYGQH_KCCI/user/profiles/t_pers_view_colleagues.html" modes="view fullpage" requireAcl="profile.following$profile.following.view" themes="wpthemeNarrow" url="{profilesSvcRef}/widget-catalog/follow.xml?version={version}"/>
+             <widgetDef defId="followFullPage" helpLink="{helpSvcRef}/SSYGQH_KCCI/user/profiles/t_pers_view_colleagues.html" modes="fullpage" requireAcl="profile.following$profile.following.view" skinType="skinless" themes="wpthemeWide" url="{profilesSvcRef}/widget-catalog/follow.xml?version={version}"/>
+              <widgetDef defId="linkRoll" helpLink="{helpSvcRef}/SSYGQH_KCCI/user/profiles/t_add_external_links.html" themes="wpthemeNarrow" url="{profilesSvcRef}/widget-catalog/linkroll.xml?version={version}"/>
+              <widgetDef defId="socialTags" helpLink="{helpSvcRef}/SSYGQH_KCCI/user/profiles/t_pers_tag_profiles.html" requireAcl="profile.tag$profile.tag.view" themes="wpthemeThin" url="{profilesSvcRef}/widget-catalog/tags.xml?version={version}"/>
+              <widgetDef defId="commonTags" helpLink="{helpSvcRef}/SSYGQH_KCCI/user/eucommon/c_eucommon_tagging_content.dita" requireAcl="profile.tag$profile.tag.view" themes="wpthemeThin" url="{profilesSvcRef}/widget-catalog/common-tags.xml?version={version}"/>
+
+            <widgetDef bundleRefId="lc_sand" defId="sand_DYK" displayLoginRequired="true" helpLink="{helpSvcRef}/SSYGQH_KCCI/user/profiles/t_pers_using_dyk_widget.html" prerequisite="sand" requireAcl="profile.sand$profile.sand.dyk.view" themes="wpthemeThin" url="{webresourcesSvcRef}/web/lconn.sand/descriptors/DYK.xml?etag={version}">
+                <itemSet>
+                  <item name="profilesRoot" value="{contextRoot}"/>
+                  <item name="profilesBlank" value="{contextRoot}/nav/common/styles/images/blank.gif"/>
+                  <item name="sandUIRoot" value="{webresourcesSvcRef}/web/lconn.sand/"/>
+                  <item name="sandBackEndRoot" value="{searchSvcRef}"/>
+                  <item name="xhrErrorHandlerAsString" value="lconn.core.errorhandling.DefaultXHRErrorHandler"/>
+                  <item name="inviteErrorHandler" value="lconn.core.errorhandling.DefaultErrorHandler"/>
+                  <item name="inviteXHRErrorHandler" value="lconn.core.errorhandling.DefaultXHRErrorHandler"/>
+               </itemSet>
+            </widgetDef>
+            <widgetDef bundleRefId="lc_sand" defId="sand_recomItems" displayLoginRequired="true" prerequisite="sand" requireAcl="profile.sand$profile.sand.recommend.view" themes="wpthemeNarrow" url="{webresourcesSvcRef}/web/lconn.sand/descriptors/Recommend.xml?etag={version}">
+                <itemSet>
+                  <item name="sandUIRoot" value="{webresourcesSvcRef}/web/lconn.sand/"/>
+                  <item name="sandBackEndRoot" value="{searchSvcRef}"/>
+                  <item name="sourceList" value="blogs,communities,wikis,files,dogear"/>
+                  <item name="ApiUrl" value="{searchSvcRef}/atom/social/recommend"/>
+                  <item name="navContentLocation" value="{contextRoot}/nav"/>
+                  <item name="xhrErrorHandlerAsString" value="lconn.core.errorhandling.DefaultXHRErrorHandler"/>
+               </itemSet>
+            </widgetDef>
+
+            <widgetDef bundleRefId="lc_sand" defId="sand_thingsInCommon" displayLoginRequired="true" helpLink="{helpSvcRef}/SSYGQH_KCCI/user/profiles/t_pers_using_tic_widget.html" hideWidgetForMyProfile="true" prerequisite="sand" requireAcl="profile.sand$profile.sand.inCommon.view" themes="wpthemeThin" url="{webresourcesSvcRef}/web/lconn.sand/descriptors/sharedLC.xml?etag={version}">
+                <itemSet>
+                  <item name="sandUIRoot" value="{webresourcesSvcRef}/web/lconn.sand/"/>
+                  <item name="sandBackEndRoot" value="{searchSvcRef}"/>
+               </itemSet>
+            </widgetDef>
+
+            <widgetDef bundleRefId="lc_sand" defId="sand_socialPath" displayLoginRequired="true" helpLink="{helpSvcRef}/SSYGQH_KCCI/user/profiles/t_pers_using_sp_widget.html" hideWidgetForMyProfile="true" prerequisite="sand" requireAcl="profile.sand$profile.sand.socialPath.view" themes="wpthemeNarrow" url="{webresourcesSvcRef}/web/lconn.sand/descriptors/socialPath.xml?etag={version}">
+                <itemSet>
+                  <item name="sandUIRoot" value="{webresourcesSvcRef}/web/lconn.sand/"/>
+                  <item name="sandBackEndRoot" value="{searchSvcRef}"/>
+               </itemSet>
+            </widgetDef>
+            <widgetDef defId="multiWidget" modes="view" skinType="skinless" themes="wpthemeWide" url="{profilesSvcRef}/widget-catalog/multiWidget.xml?version={version}">
+                <itemSet>
+                  <item name="containerRecurranceType" value="tabs"/>
+                </itemSet>
+            </widgetDef>
+            <widgetDef defId="board" helpLink="{helpSvcRef}/SSYGQH_KCCI/user/profiles/c_pers_wall_intro.html" modes="view fullpage" requireAcl="profile.board$profile.board.write.message" themes="wpthemeWide" url="{profilesSvcRef}/widget-catalog/wall.xml?version={version}"/>
+            <widgetDef defId="backgroundInfo" helpLink="{helpSvcRef}/SSYGQH_KCCI/user/profiles/c_pers_profiles.html" modes="view fullpage" themes="wpthemeWide" url="{profilesSvcRef}/widget-catalog/profile-details.xml?version={version}">
+                <itemSet>
+                	<item name="section" value="associatedInformation"/>
+                </itemSet>
+            </widgetDef>
+            <widgetDef defId="contactInfo" helpLink="{helpSvcRef}/SSYGQH_KCCI/user/profiles/c_pers_profiles.html" modes="view fullpage" themes="wpthemeWide" url="{profilesSvcRef}/widget-catalog/profile-details.xml?version={version}">
+            	<itemSet>
+            		<item name="section" value="contactInformation"/>
+            	</itemSet>
+            </widgetDef>
+            <widgetDef defId="Updates" helpLink="{helpSvcRef}/SSYGQH_KCCI/user/profiles/c_pers_profiles.html" modes="view fullpage" requireAcl="profile.status$profile.status.view" themes="wpthemeWide" url="{webresourcesSvcRef}/web/com.ibm.social.as.lconn/widgets/profilesActivityStream.xml?etag={version}"/>
+          </definitions>
+          <layout resourceSubType="default">
+              <page pageId="profilesView">
+                <widgetInstance defIdRef="multiWidget" instanceId="tabsWidget1" uiLocation="col2"/>
+				<widgetInstance defIdRef="Updates" uiLocation="tabsWidget1"/>
+                <widgetInstance defIdRef="contactInfo" uiLocation="tabsWidget1"/>
+                <widgetInstance defIdRef="backgroundInfo" uiLocation="tabsWidget1"/>
+                <!--<widgetInstance uiLocation="tabsWidget1" defIdRef="filesReader"/>-->
+				<!--<widgetInstance uiLocation="tabsWidget1" defIdRef="multiFeedReader"/>-->
+                <widgetInstance defIdRef="socialTags" uiLocation="col1"/>
+                <widgetInstance defIdRef="sand_thingsInCommon" uiLocation="col1"/>
+                <widgetInstance defIdRef="sand_socialPath" uiLocation="col3"/>
+                <widgetInstance defIdRef="reportStructure" hidden="true" uiLocation="col3"/>
+                <widgetInstance defIdRef="friends" uiLocation="col3"/>
+                <widgetInstance defIdRef="linkRoll" uiLocation="col3"/>
+                <widgetInstance defIdRef="reportStructure" hidden="true" uiLocation="col3-InactiveUser"/>
+                <widgetInstance defIdRef="friends" uiLocation="col3-InactiveUser"/>
+              </page>
+              <page pageId="searchResultView">
+                <widgetInstance defIdRef="commonTags" uiLocation="col1"/>
+              </page>
+              <page pageId="searchView">
+                <widgetInstance defIdRef="sand_DYK" uiLocation="col1"/>
+                <widgetInstance defIdRef="commonTags" uiLocation="col1"/>
+                <!--
+                <widgetInstance uiLocation="col3" defIdRef="sand_recomItems"/>
+                -->
+              </page>
+              <page pageId="networkView">
+                <widgetInstance defIdRef="sand_DYK" uiLocation="col1"/>
+				<widgetInstance defIdRef="friendsFullPage" uiLocation="fullpage"/>
+              </page>
+              <page pageId="followView">
+                <widgetInstance defIdRef="sand_DYK" uiLocation="col1"/>
+				<widgetInstance defIdRef="followFullPage" uiLocation="fullpage"/>
+              </page>
+              <page pageId="editProfileView">
+                <widgetInstance defIdRef="socialTags" uiLocation="col1"/>
+                <!--
+                <widgetInstance uiLocation="col1" defIdRef="sand_thingsInCommon"/>
+                -->
+                <widgetInstance defIdRef="sand_socialPath" uiLocation="col3"/>
+                <widgetInstance defIdRef="reportStructure" hidden="true" uiLocation="col3"/>
+                <widgetInstance defIdRef="friends" uiLocation="col3"/>
+                <widgetInstance defIdRef="linkRoll" uiLocation="col3"/>
+              </page>
+          </layout>
+        </widgets>
+    </resource>
+    <resource aclServiceImpl="com.ibm.lconn.comm.acl.ACLSvcImpl" resourceValuesProvider="com.ibm.tango.internal.service.CommunitiesResourceValuesProvider" type="community" xpathMandatedWidgetForMainPage="/tns:config/tns:resource[@type='community']/tns:widgets/tns:layout/tns:page[@pageId = 'communityOverview']">
+        <widgets>
+          <definitions>
+            <widgetDef defId="Members" helpLink="{helpSvcRef}/SSYGQH_KCCI/user/communities/t_com_membership_view.html" modes="view fullpage" primaryWidget="false" showInPalette="false" themes="wpthemeThin wpthemeNarrow wpthemeWide wpthemeBanner" uniqueInstance="true" url="{webresourcesSvcRef}/web/lconn.comm/communityMembers/communityMembers.xml?etag={version}">
+                <itemSet>
+                    <item name="membersPerPageFullPage" value="16"/>
+                </itemSet>
+            </widgetDef>
+            <!-- IBM GROUP - ICEC4Communities -->
+<widgetDef
+    defId="ICEC2"
+    description="ICEC.desc"
+    bundleRefId="ICEC"
+    modes="view edit fullpage"
+    themes="wpthemeNarrow wpthemeWide wpthemeBanner"
+    showInPalette="true"
+    uniqueInstance="true"
+    url="/xcc/templates/iwidgetXCCCommunityDefinition.xml">
+    <itemSet>
+       <item name="lang" value="{lang}"/>
+    </itemSet>
+</widgetDef>
+<!-- IBM GROUP - ICEC4Communities -->
+            <widgetDef defId="MembersSummary" description="memberSummaryDescription" helpLink="{helpSvcRef}/SSYGQH_KCCI/user/communities/t_com_membership_view.html" iconUrl="{webresourcesSvcRef}/web/com.ibm.oneui3.styles/imageLibrary/Icons/ComponentsGray/CommunitiesGray16.png" modes="view" primaryWidget="false" showFullWidgetDeleteConfirmation="false" showInPalette="true" themes="wpthemeNarrow wpthemeWide wpthemeThin wpthemeBanner" uniqueInstance="true" url="{webresourcesSvcRef}/web/lconn.comm/communityMembers/communityMembers.xml?etag={version}">
+                <itemSet>
+                    <item name="membersPerThinColumn" value="6"/>
+                    <item name="membersPerNarrowColumn" value="10"/>
+                    <item name="membersPerWideColumn" value="10"/>
+                    <item name="membersPerBannerColumn" value="16"/>
+                </itemSet>
+            </widgetDef>
+
+            <!-- Communities test widget -->
+            <widgetDef defId="CommunitiesTestWidget" iconUrl="{webresourcesSvcRef}/web/com.ibm.oneui3.styles/imageLibrary/Icons/ComponentsGray/FilesGray16.png" modes="view edit fullpage" navBarLink="javascript:javascript: void(0)" showIfConfigSet="Communities.CommunitiesTestWidget" showIfCookieSet="Communities.CommunitiesTestWidget" showIfNothingSet="false" showInPalette="true" themes="wpthemeWide wpthemeNarrow wpthemeThin wpthemeBanner" uniqueInstance="false" url="{webresourcesSvcRef}/web/lconn.comm/widgets/multiInstance/multiInstance.xml?version={version}">
+                <lifecycle handler="com.ibm.lconn.comm.lifecycle.ReferencesLifecycleHandler">
+                    <event>remote.app.removed</event>
+                </lifecycle>
+            </widgetDef>
+
+            <widgetDef defId="Blog" description="blogsDescription" helpLink="{helpSvcRef}/SSYGQH_KCCI/user/communities/community_blog_frame.html" iconUrl="{webresourcesSvcRef}/web/com.ibm.oneui3.styles/imageLibrary/Icons/ComponentsGray/BlogsGray16.png" modes="view edit search" navBarLink="{blogsSvcRef}/{resourceId}?lang={locale_}" prerequisite="blogs" themes="wpthemeNarrow wpthemeWide wpthemeBanner wpthemeThin" uniqueInstance="true" url="{blogsSvcRef}/static/{version}!{locale}/iwidgets/blog/blogsWidget.jsp">
+                <itemSet>
+                    <item name="lang" value="{lang}"/>
+                    <item name="communitiesBaseUrl" value="{communitiesSvcRef}"/>
+                    <item name="blogsBaseUrl" value="{blogsSvcRef}"/>
+        		    <item name="staticLanguageRoot" value="{blogsSvcRef}/static/{version}!{locale}"/>
+                    <item name="profilesBaseUrl" value="{profilesSvcRef}"/>
+					<item name="atomFeedUrl" value="{blogsSvcRef}/atom_form/blogs?commUuid={resourceId}&amp;blogType=communityblog"/>
+					<item name="atomFeedUrl.basic" value="{blogsSvcRef}/atom/blogs?commUuid={resourceId}&amp;blogType=communityblog"/>
+					<item name="atomFeedUrl.oauth" value="{blogsSvcRef}/oauth/atom/blogs?commUuid={resourceId}&amp;blogType=communityblog"/>
+					<item name="atomPubUrl" value="{blogsSvcRef}/api_form/blogs?commUuid={resourceId}&amp;blogType=communityblog"/>
+					<item name="atomPubUrl.basic" value="{blogsSvcRef}/api/blogs?commUuid={resourceId}&amp;blogType=communityblog"/>
+					<item name="atomPubUrl.oauth" value="{blogsSvcRef}/oauth/api/blogs?commUuid={resourceId}&amp;blogType=communityblog"/>
+					<item name="searchUrl" value="{blogsSvcRef}/atom_form?search={searchTerm}&amp;commUuid={resourceId}&amp;t=entry&amp;ps=5&amp;page=0&amp;sortby=0&amp;order=desc&amp;lang=en"/>
+					<item name="searchUrl.basic" value="{blogsSvcRef}/atom?search={searchTerm}&amp;commUuid={resourceId}&amp;t=entry&amp;ps=5&amp;page=0&amp;sortby=0&amp;order=desc&amp;lang=en"/>
+                    <item name="searchUrl.oauth" value="{blogsSvcRef}/oauth/atom?search={searchTerm}&amp;commUuid={resourceId}&amp;t=entry&amp;ps=5&amp;page=0&amp;sortby=0&amp;order=desc&amp;lang=en"/>
+                </itemSet>
+                <lifecycle remoteHandlerAuthenticationAlias="connectionsAdmin" remoteHandlerURL="{blogsInterSvcRef}/roller-ui/BlogsWidgetEventHandler.do">
+                    <event>widget.added</event>
+                    <event>widget.removed</event>
+                    <event>community.visibility.changed</event>
+                    <event>community.prepare.delete</event>
+                    <event>remote.app.transfer</event>
+                    <event>community.updated</event>
+					<event>community.org.changed</event>
+					<event>community.members.added</event>
+					<event>community.members.removed</event>
+					<event>community.members.modified</event>
+					<event>community.softdeleted</event>
+                </lifecycle>
+              </widgetDef>
+
+			<!-- for support multiple ideation blog
+            <widgetDef defId="IdeationBlog" prerequisite="blogs" modes="view edit fullpage search" url="{blogsSvcRef}/static/{version}!{locale}/iwidgets/ideationblog/Ideations.xml"
+				themes="wpthemeWide wpthemeNarrow wpthemeBanner wpthemeThin"
+                description="ideationBlogsDescription" uniqueInstance="true"
+                helpLink="{helpSvcRef}/SSYGQH_KCCI/user/communities/ideationblog_frame.html"
+                iconUrl="{webresourcesSvcRef}/web/com.ibm.oneui3.styles/imageLibrary/Icons/ComponentsGray/BlogsGray16.png">
+			-->
+			<widgetDef defId="IdeationBlog" description="ideationBlogsDescription" helpLink="{helpSvcRef}/SSYGQH_KCCI/user/communities/ideationblog_frame.html" iconUrl="{webresourcesSvcRef}/web/com.ibm.oneui3.styles/imageLibrary/Icons/ComponentsGray/BlogsGray16.png" modes="view edit fullpage search" prerequisite="blogs" themes="wpthemeNarrow wpthemeWide wpthemeBanner wpthemeThin" uniqueInstance="true" url="{blogsSvcRef}/static/{version}!{locale}/iwidgets/ideationblog/Ideations.xml">
+                <itemSet>
+                    <item name="lang" value="{lang}"/>
+                    <item name="communitiesBaseUrl" value="{communitiesSvcRef}"/>
+                    <item name="blogsBaseUrl" value="{blogsSvcRef}"/>
+        			<item name="staticLanguageRoot" value="{blogsSvcRef}/static/{version}!{locale}"/>
+                    <item name="profilesBaseUrl" value="{profilesSvcRef}"/>
+					<item name="atomFeedUrl" value="{blogsSvcRef}/atom_form/blogs?commUuid={resourceId}&amp;blogType=ideationblog"/>
+					<item name="atomFeedUrl.basic" value="{blogsSvcRef}/atom/blogs?commUuid={resourceId}&amp;blogType=ideationblog"/>
+					<item name="atomFeedUrl.oauth" value="{blogsSvcRef}/oauth/atom/blogs?commUuid={resourceId}&amp;blogType=ideationblog"/>
+					<item name="atomPubUrl" value="{blogsSvcRef}/api_form/blogs?commUuid={resourceId}&amp;blogType=ideationblog"/>
+					<item name="atomPubUrl.basic" value="{blogsSvcRef}/api/blogs?commUuid={resourceId}&amp;blogType=ideationblog"/>
+					<item name="atomPubUrl.oauth" value="{blogsSvcRef}/oauth/api/blogs?commUuid={resourceId}&amp;blogType=ideationblog"/>
+					<item name="searchUrl" value="{blogsSvcRef}/atom_form?search={searchTerm}&amp;commUuid={resourceId}&amp;t=idea&amp;ps=5&amp;page=0&amp;sortby=0&amp;order=desc&amp;lang=en"/>
+					<item name="searchUrl.basic" value="{blogsSvcRef}/atom?search={searchTerm}&amp;commUuid={resourceId}&amp;t=idea&amp;ps=5&amp;page=0&amp;sortby=0&amp;order=desc&amp;lang=en"/>
+                    <item name="searchUrl.oauth" value="{blogsSvcRef}/oauth/atom?search={searchTerm}&amp;commUuid={resourceId}&amp;t=idea&amp;ps=5&amp;page=0&amp;sortby=0&amp;order=desc&amp;lang=en"/>
+                </itemSet>
+                <lifecycle remoteHandlerAuthenticationAlias="connectionsAdmin" remoteHandlerURL="{blogsInterSvcRef}/roller-ui/BlogsWidgetEventHandler.do">
+                    <event>widget.added</event>
+                    <event>widget.removed</event>
+                    <event>community.visibility.changed</event>
+                    <event>community.prepare.delete</event>
+                    <event>remote.app.transfer</event>
+                    <event>community.updated</event>
+                    <event>community.members.added</event>
+					<event>community.members.removed</event>
+					<event>community.members.modified</event>
+					<event>community.softdeleted</event>
+                </lifecycle>
+              </widgetDef>
+
+              <widgetDef defId="Activities" description="commActivitesDescription" helpLink="{helpSvcRef}/SSYGQH_KCCI/user/communities/community_activity_frame.html" iconUrl="{webresourcesSvcRef}/web/com.ibm.oneui3.styles/imageLibrary/Icons/ComponentsGray/ActivitiesGray16.png" modes="view edit fullpage search" prerequisite="activities" themes="wpthemeNarrow wpthemeWide wpthemeBanner wpthemeThin" uniqueInstance="true" url="{webresourcesSvcRef}/web/lconn.communityactivities/ActivityList.xml?etag={version}">
+                <itemSet>
+                    <item name="activityBaseUrl" value="{activitiesSvcRef}"/>
+                    <item name="atomPubUrl" value="{activitiesSvcRef}/service/atom2/service?commUuid={resourceId}"/>
+                    <item name="atomFeedUrl" value="{activitiesSvcRef}/service/atom2/activities?commUuid={resourceId}&amp;public=yes&amp;authenticate=no"/>
+                    <item name="searchUrl" value="{activitiesSvcRef}/service/atom2/activities?commUuid={resourceId}&amp;public=yes&amp;authenticate=no&amp;search={searchTerm}"/>
+                    <item name="atomPubUrl.forms" value="{activitiesSvcRef}/service/atom2/forms/service?commUuid={resourceId}"/>
+                    <item name="atomFeedUrl.forms" value="{activitiesSvcRef}/service/atom2/forms/activities?commUuid={resourceId}&amp;public=yes&amp;authenticate=no"/>
+                    <item name="searchUrl.forms" value="{activitiesSvcRef}/service/atom2/forms/activities?commUuid={resourceId}&amp;public=yes&amp;authenticate=no&amp;search={searchTerm}"/>
+                    <item name="atomPubUrl.oauth" value="{activitiesSvcRef}/oauth/atom2/service?commUuid={resourceId}"/>
+                    <item name="atomFeedUrl.oauth" value="{activitiesSvcRef}/oauth/atom2/activities?commUuid={resourceId}&amp;public=yes&amp;authenticate=no"/>
+                    <item name="searchUrl.oauth" value="{activitiesSvcRef}/oauth/atom2/activities?commUuid={resourceId}&amp;public=yes&amp;authenticate=no&amp;search={searchTerm}"/>
+                    <item name="activitiesPerPage" value="5"/>
+                    <item name="activitiesPerPageFullpage" value="10"/>
+                    <item name="numHistoryItems" value="3"/>
+                    <item name="cPath" value="{contextRoot}"/>
+                </itemSet>
+                <lifecycle remoteHandlerAuthenticationAlias="connectionsAdmin" remoteHandlerURL="{activitiesInterSvcRef}/service/atom2/forms/communityEvent">
+                    <event>remote.app.removed</event>
+                    <event>remote.app.added</event>
+                    <event doesNotRequireWidget="true">community.visibility.changed</event>
+                    <event doesNotRequireWidget="true">community.prepare.delete</event>
+                    <event>remote.app.transfer</event>
+                    <event doesNotRequireWidget="true">community.updated</event>
+                    <event doesNotRequireWidget="true">community.members.removed</event>
+                    <event doesNotRequireWidget="true">community.org.changed</event>
+                </lifecycle>
+              </widgetDef>
+            <widgetDef defId="Wiki" description="wikiDescription" helpLink="{helpSvcRef}/SSYGQH_KCCI/user/communities/community_wiki_frame.html" iconUrl="{webresourcesSvcRef}/web/com.ibm.oneui3.styles/imageLibrary/Icons/ComponentsGray/WikisGray16.png" modes="view search edit" navBarLink="{wikisSvcRef}/communitywiki?communityUuid={resourceId}" prerequisite="wikis" themes="wpthemeNarrow wpthemeWide wpthemeBanner wpthemeThin" uniqueInstance="true" url="{wikisSvcRef}/static/iwidgets/{version}/CommunityWidget/WikiWidget.xml">
+                <itemSet>
+                    <item name="wikisRoot" value="{wikisSvcRef}"/>
+					<item name="atomPubUrl" value="{wikisSvcRef}/form/api/community/{resourceId}/introspection"/>
+					<item name="atomPubUrl.basic" value="{wikisSvcRef}/basic/api/community/{resourceId}/introspection"/>
+					<item name="atomPubUrl.oauth" value="{wikisSvcRef}/oauth/api/community/{resourceId}/introspection"/>
+					<item name="atomFeedUrl" value="{wikisSvcRef}/form/api/communitywiki/{resourceId}/feed"/>
+					<item name="atomFeedUrl.basic" value="{wikisSvcRef}/basic/api/communitywiki/{resourceId}/feed"/>
+					<item name="atomFeedUrl.oauth" value="{wikisSvcRef}/oauth/api/communitywiki/{resourceId}/feed"/>
+					<item name="searchUrl" value="{wikisSvcRef}/form/api/communitywiki/{resourceId}/feed?search={searchTerm}"/>
+					<item name="searchUrl.basic" value="{wikisSvcRef}/basic/api/communitywiki/{resourceId}/feed?search={searchTerm}"/>
+                    <item name="searchUrl.oauth" value="{wikisSvcRef}/oauth/api/communitywiki/{resourceId}/feed?search={searchTerm}"/>
+                </itemSet>
+                <lifecycle remoteHandlerAuthenticationAlias="connectionsAdmin" remoteHandlerURL="{wikisInterSvcRef}/wl/lifecycle/wikis">
+                   <event>widget.added</event>
+                   <event>widget.removed</event>
+                   <event>community.visibility.changed</event>
+                   <event>community.updated</event>
+                   <event>community.prepare.delete</event>
+                   <event>remote.app.transfer</event>
+                   <event>community.members.removed</event>
+                   <event>community.org.changed</event>
+                   <event>community.softdeleted</event>
+				   <event>community.restored</event>
+                </lifecycle>
+            </widgetDef>
+
+			<widgetDef defId="RichContent" description="RichContentDescription" helpLink="{helpSvcRef}/SSYGQH_KCCI/user/communities/eucommon_ckeditor.html" iconUrl="{webresourcesSvcRef}/web/com.ibm.oneui3.styles/imageLibrary/Icons/ComponentsGray/customcontentGray16.png" modes="view edit" prerequisite="rte files" showIfConfigSet="Wikis.RichContentWidget" showIfCookieSet="Wikis.RichContentWidget" showIfGatekeeperSet="WIKIS_RICH_CONTENT_WIDGET" showIfNothingSet="false" themes="wpthemeNarrow wpthemeWide wpthemeBanner wpthemeThin" uniqueInstance="false" url="{webresourcesSvcRef}/web/lconn.rich/descriptor/RichContent.xml?version={version}">
+                    <lifecycle remoteHandlerAuthenticationAlias="connectionsAdmin" remoteHandlerURL="{rteInterSvcRef}/wl/lifecycle/api">
+                        <event ifGatekeeperSet="FILES_APPDATA_HANDLE_WIDGET_EVENTS">widget.added</event>
+                    </lifecycle>
+                </widgetDef>
+
+            <widgetDef defId="Forum" description="forumDescription" helpLink="{helpSvcRef}/SSYGQH_KCCI/user/communities/community_forum_frame.html" iconUrl="{webresourcesSvcRef}/web/com.ibm.oneui3.styles/imageLibrary/Icons/ComponentsGray/ForumsGray16.png" modes="view edit fullpage search" prerequisite="forums" themes="wpthemeNarrow wpthemeWide wpthemeBanner wpthemeThin" uniqueInstance="true" url="{webresourcesSvcRef}/web/lconn.forums/widgets/topicList.xml?etag={version}">
+                <itemSet>
+                    <item name="contextPath" readOnly="true" value="{contextRoot}"/>
+					<item name="atomPubUrl" value="{forumsSvcRef}/atom/forms/service?communityUuid={resourceId}"/>
+					<item name="atomPubUrl.basic" value="{forumsSvcRef}/atom/service?communityUuid={resourceId}"/>
+					<item name="atomPubUrl.oauth" value="{forumsSvcRef}/oauth/atom/service?communityUuid={resourceId}"/>
+					<item name="atomFeedUrl" value="{forumsSvcRef}/atom/forms/topics?communityUuid={resourceId}"/>
+					<item name="atomFeedUrl.basic" value="{forumsSvcRef}/atom/topics?communityUuid={resourceId}"/>
+					<item name="atomFeedUrl.oauth" value="{forumsSvcRef}/oauth/atom/topics?communityUuid={resourceId}"/>
+					<item name="searchUrl" value="{forumsSvcRef}/atom/forms/topics?communityUuid={resourceId}&amp;search={searchTerm}"/>
+					<item name="searchUrl.basic" value="{forumsSvcRef}/atom/topics?communityUuid={resourceId}&amp;search={searchTerm}"/>
+					<item name="searchUrl.oauth" value="{forumsSvcRef}/oauth/atom/topics?communityUuid={resourceId}&amp;search={searchTerm}"/>
+                    <item name="topicFeedPath" readOnly="true" value="{forumsSvcRef}/atom/forms/topics?overview=true&amp;communityUuid={resourceId}"/>
+                    <item name="overviewPageSize" value="5"/>
+                    <item name="fullpagePageSize" value="25"/>
+                    <item name="forumsPage" readOnly="true" value="{forumsSvcRef}/ajax/comm/forums?communityId={resourceId}"/>
+                    <item name="forumStyles" readOnly="true" value="{webresourcesSvcRef}/web/com.ibm.lconn.core.styles/base/applications/forums.css?etag={version}"/>
+                    <item name="forumsContextPath" readOnly="true" value="{forumsSvcRef}"/>
+                </itemSet>
+                <lifecycle remoteHandlerAuthenticationAlias="connectionsAdmin" remoteHandlerURL="{forumsInterSvcRef}/lifecycle/communityEvent">
+                    <event>remote.app.added</event>
+                    <event>remote.app.removed</event>
+                    <event>community.prepare.delete</event>
+                    <event>community.visibility.changed</event>
+                    <event>community.updated</event>
+                    <event>community.members.added</event>
+                    <event>community.members.removed</event>
+                    <event>remote.app.transfer</event>
+                    <event>community.org.changed</event>
+                </lifecycle>
+            </widgetDef>
+            <widgetDef defId="SubcommunityNav" description="subcommunityDescription" helpLink="{helpSvcRef}/SSYGQH_KCCI/user/communities/t_com_create_subcommunity.html" iconUrl="{webresourcesSvcRef}/web/com.ibm.oneui3.styles/imageLibrary/Icons/ComponentsGray/CommunitiesGray16.png" modes="view" showFullWidgetDeleteConfirmation="false" themes="wpthemeWide wpthemeNarrow wpthemeThin wpthemeBanner" uniqueInstance="true" url="{webresourcesSvcRef}/web/lconn.comm/widgets/subcommunityNav/subcommunitynav.xml?etag={version}">
+                <itemSet>
+                    <item name="subcommunitiesFeedUrl" value="{communitiesSvcRef}/service/atom{authSubpath}/community/subcommunities?communityUuid={resourceId}&amp;ps=200"/>
+                    <item name="defaultView" value="images"/>
+                </itemSet>
+            </widgetDef>
+            <widgetDef defId="Bookmarks" description="commBookmarks" helpLink="{helpSvcRef}/SSYGQH_KCCI/user/communities/community_bookmarks_frame.html" iconUrl="{webresourcesSvcRef}/web/com.ibm.oneui3.styles/imageLibrary/Icons/ComponentsGray/BookmarksGray16.png" modes="view search" navBarLink="{contextRoot}/service/html/community/bookmarks?communityUuid={resourceId}" themes="wpthemeWide wpthemeNarrow wpthemeThin wpthemeBanner" uniqueInstance="true" url="{webresourcesSvcRef}/web/lconn.comm/widgets/feedReader/feedreader.xml?etag={version}">
+                <itemSet>
+                    <item name="widgetType" value="bookmarks"/>
+                    <item name="feedUrl" value="{communitiesSvcRef}/service/atom{authSubpath}/community/bookmarks?communityUuid={resourceId}&amp;ps=5"/>
+                    <item name="atomPubUrl" value="{communitiesSvcRef}/service/atom{authSubpath}/community/bookmarks/service?communityUuid={resourceId}"/>
+                    <item name="searchUrl" value="{communitiesSvcRef}/service/atom{authSubpath}/community/bookmarks?communityUuid={resourceId}&amp;search={searchTerm}"/>
+                </itemSet>
+                <lifecycle handler="com.ibm.lconn.comm.lifecycle.ReferencesLifecycleHandler">
+                    <event>remote.app.removed</event>
+                </lifecycle>
+            </widgetDef>
+            <widgetDef defId="ImportantBookmarks" description="importantBookmarksDescription" helpLink="{helpSvcRef}/SSYGQH_KCCI/user/communities/community_bookmarks_frame.html" iconUrl="{webresourcesSvcRef}/web/com.ibm.oneui3.styles/imageLibrary/Icons/ComponentsGray/BookmarksGray16.png" modes="view" primaryWidget="false" showFullWidgetDeleteConfirmation="false" themes="wpthemeNarrow wpthemeWide wpthemeThin wpthemeBanner" uniqueInstance="true" url="{webresourcesSvcRef}/web/lconn.comm/importantBookmarks/importantBookmarks.xml?etag={version}">
+            </widgetDef>
+			<widgetDef defId="Tags" description="tagsDescription" iconUrl="{webresourcesSvcRef}/web/com.ibm.oneui3.styles/imageLibrary/Icons/ComponentsGray/tag_32.png" modes="view" primaryWidget="false" showFullWidgetDeleteConfirmation="false" showInPalette="true" themes="wpthemeNarrow wpthemeWide wpthemeThin wpthemeBanner" uniqueInstance="true" url="{webresourcesSvcRef}/web/lconn.comm/tags/tags.xml?etag={version}">
+			</widgetDef>
+            <widgetDef defId="description" description="descriptionDescription" helpLink="{helpSvcRef}/SSYGQH_KCCI/user/communities/t_com_edit.html" iconUrl="{webresourcesSvcRef}/web/com.ibm.oneui3.styles/imageLibrary/Icons/ComponentsGray/CommunitiesGray16.png" modes="view edit" primaryWidget="true" showFullWidgetDeleteConfirmation="false" themes="wpthemeWide wpthemeBanner wpthemeNarrow wpthemeThin" uniqueInstance="true" url="{webresourcesSvcRef}/web/lconn.comm/description/description.xml?etag={version}">
+            </widgetDef>
+            <widgetDef defId="Feeds" description="commFeeds" helpLink="{helpSvcRef}/SSYGQH_KCCI/user/communities/community_feeds_frame.html" iconUrl="{webresourcesSvcRef}/web/com.ibm.oneui3.styles/imageLibrary/Icons/Other/FeedGray16.png" modes="view search" navBarLink="{contextRoot}/service/html/community/feeds?communityUuid={resourceId}" themes="wpthemeWide wpthemeBanner wpthemeThin wpthemeNarrow" uniqueInstance="true" url="{webresourcesSvcRef}/web/lconn.comm/widgets/feedReader/feedreader.xml?etag={version}">
+                <itemSet>
+                    <item name="widgetType" value="feeds"/>
+                    <item name="feedUrl" value="{communitiesSvcRef}/service/atom{authSubpath}/community/feeds?communityUuid={resourceId}&amp;ps=5"/>
+                    <item name="atomPubUrl" value="{communitiesSvcRef}/service/atom{authSubpath}/community/feeds/service?communityUuid={resourceId}"/>
+                    <item name="searchUrl" value="{communitiesSvcRef}/service/atom{authSubpath}/community/feeds?communityUuid={resourceId}&amp;search={searchTerm}"/>
+                </itemSet>
+                <lifecycle handler="com.ibm.lconn.comm.lifecycle.ReferencesLifecycleHandler">
+                    <event>remote.app.removed</event>
+                </lifecycle>
+            </widgetDef>
+            <widgetDef defId="Files" description="filesDescription" helpLink="{helpSvcRef}/SSYGQH_KCCI/user/communities/community_files_frame.html" iconUrl="{webresourcesSvcRef}/web/com.ibm.oneui3.styles/imageLibrary/Icons/ComponentsGray/FilesGray16.png" modes="view fullpage search edit" prerequisite="files" themes="wpthemeNarrow wpthemeWide wpthemeBanner wpthemeThin" uniqueInstance="true" url="{filesSvcRef}/static/{version}!{locale}/iwidgets/CommunityReferentialWidget/widget.xml">
+                <itemSet>
+                    <item name="filesRoot" readOnly="true" value="{filesSvcRef}"/>
+                    <item name="filesJsRoot" readOnly="true" value="{filesSvcRef}/static/js/{version}!{locale}"/>
+                    <item name="contextRoot" readOnly="true" value="{contextRoot}"/>
+        		    <item name="staticLanguageRoot" value="{filesSvcRef}/static/{version}!{locale}/"/>
+					<item name="atomPubUrl" value="{filesSvcRef}/form/api/community/{resourceId}/introspection"/>
+					<item name="atomPubUrl.basic" value="{filesSvcRef}/basic/api/community/{resourceId}/introspection"/>
+					<item name="atomPubUrl.oauth" value="{filesSvcRef}/oauth/api/community/{resourceId}/introspection"/>
+					<item name="atomFeedUrl" value="{filesSvcRef}/form/api/communitycollection/{resourceId}/feed"/>
+					<item name="atomFeedUrl.basic" value="{filesSvcRef}/basic/api/communitycollection/{resourceId}/feed"/>
+					<item name="atomFeedUrl.oauth" value="{filesSvcRef}/oauth/api/communitycollection/{resourceId}/feed"/>
+					<item name="searchUrl" value="{filesSvcRef}/form/api/communitylibrary/{resourceId}/feed?search={searchTerm}"/>
+					<item name="searchUrl.basic" value="{filesSvcRef}/basic/api/communitylibrary/{resourceId}/feed?search={searchTerm}"/>
+					<item name="searchUrl.oauth" value="{filesSvcRef}/oauth/api/communitylibrary/{resourceId}/feed?search={searchTerm}"/>
+                </itemSet>
+                <lifecycle remoteHandlerAuthenticationAlias="connectionsAdmin" remoteHandlerURL="{filesInterSvcRef}/wl/lifecycle/files">
+                   <event>widget.added</event>
+                   <event>widget.removed</event>
+                   <event doesNotRequireWidget="true">community.visibility.changed</event>
+                   <event doesNotRequireWidget="true">community.updated</event>
+                   <event doesNotRequireWidget="true">community.prepare.delete</event>
+                   <event doesNotRequireWidget="true">community.org.changed</event>
+                   <event>remote.app.transfer</event>
+                   <event doesNotRequireWidget="true">community.members.removed</event>
+				   <event doesNotRequireWidget="true">community.softdeleted</event>
+				   <event doesNotRequireWidget="true">community.restored</event>
+                </lifecycle>
+            </widgetDef>
+            <widgetDef defId="widgetPalette" resourceOwnerWidget="true" showInPalette="false" themes="wpthemeBanner" url="{webresourcesSvcRef}/web/lconn.comm/widgets/applicationPalette/applicationPalette.xml?etag={version}"/>
+            <widgetDef bundleRefId="lc_sand" defId="sand_recomComm" displayLoginRequired="true" helpLink="{helpSvcRef}/SSYGQH_KCCI/user/communities/t_com_using_recommended_comms_widget.html" prerequisite="sand" primaryWidget="false" showInPalette="false" themes="wpthemeNarrow" url="{webresourcesSvcRef}/web/lconn.sand/descriptors/CommunityRecommend.xml?etag={version}">
+                <itemSet>
+                  <item name="sandUIRoot" value="{webresourcesSvcRef}/web/lconn.sand/"/>
+                  <item name="sandBackEndRoot" value="{searchSvcRef}"/>
+                  <item name="sourceList" value="communities"/>
+                  <item name="ApiUrl" value="{searchSvcRef}/atom/social/recommend"/>
+                  <item name="navContentLocation" value="{contextRoot}/nav"/>
+                  <item name="xhrErrorHandlerAsString" value="lconn.core.errorhandling.DefaultXHRErrorHandler"/>
+               </itemSet>
+            </widgetDef>
+            <widgetDef bundleRefId="lc_clib" defId="Gallery" description="Gallery.description" helpLink="{helpSvcRef}/SSYGQH_KCCI/user/communities/gallery_frame.html" iconUrl="{webresourcesSvcRef}/web/lconn.gallery/images/gallery_16.png" modes="view edit" prerequisite="files" primaryWidget="false" showFullWidgetDeleteConfirmation="false" themes="wpthemeThin wpthemeNarrow wpthemeWide wpthemeBanner" url="{webresourcesSvcRef}/web/lconn.gallery/Gallery.xml?etag={version}">
+            </widgetDef>
+            <widgetDef defId="Calendar" description="calendarDescription" helpLink="{helpSvcRef}/SSYGQH_KCCI/user/communities/community_events_frame.html" iconUrl="{webresourcesSvcRef}/web/com.ibm.oneui3.styles/imageLibrary/Icons/ComponentsGray/CalendarGray16.png" modes="view edit fullpage search" primaryWidget="false" showInPalette="true" themes="wpthemeThin wpthemeNarrow wpthemeWide wpthemeBanner" uniqueInstance="true" url="{communitiesSvcRef}/calendar/Calendar.xml?version={version}">
+ 		       <itemSet>
+ 		         <item name="calendarRoot" value="{communitiesSvcRef}/calendar"/>
+ 		         <item name="communitiesBaseUrl" value="{communitiesSvcRef}"/>
+ 		         <item name="defaultView" value="list"/>
+ 		 		 <item name="version" value="{version}"/>
+ 		 		 <item name="profilesBaseUrl" value="{profilesSvcRef}"/>
+				 <item name="atomPubUrl" value="{communitiesSvcRef}/calendar/atom_form/calendar/service?calendarUuid={resourceId}"/>
+				 <item name="atomPubUrl.basic" value="{communitiesSvcRef}/calendar/atom/calendar/service?calendarUuid={resourceId}"/>
+				 <item name="atomPubUrl.oauth" value="{communitiesSvcRef}/calendar/oauth/atom/calendar/service?calendarUuid={resourceId}"/>
+				 <item name="atomFeedUrl" value="{communitiesSvcRef}/calendar/atom_form/calendar/event?type=event&amp;calendarUuid={resourceId}"/>
+				 <item name="atomFeedUrl.basic" value="{communitiesSvcRef}/calendar/atom/calendar/event?type=event&amp;calendarUuid={resourceId}"/>
+				 <item name="atomFeedUrl.oauth" value="{communitiesSvcRef}/calendar/oauth/atom/calendar/event?type=event&amp;calendarUuid={resourceId}"/>
+				 <item name="searchUrl" value="{communitiesSvcRef}/calendar/atom_form/search?search={searchTerm}&amp;calendarUuid={resourceId}"/>
+				 <item name="searchUrl.basic" value="{communitiesSvcRef}/calendar/atom/search?search={searchTerm}&amp;calendarUuid={resourceId}"/>
+				 <item name="searchUrl.oauth" value="{communitiesSvcRef}/calendar/oauth/atom/search?search={searchTerm}&amp;calendarUuid={resourceId}"/>
+ 		       </itemSet>
+ 		       <lifecycle remoteHandlerAuthenticationAlias="connectionsAdmin" remoteHandlerURL="{communitiesInterSvcRef}/calendar/handleEvent">
+ 		         <event>remote.app.added</event>
+ 		         <event>remote.app.removed</event>
+ 		         <event>community.prepare.delete</event>
+ 		         <event>community.visibility.changed</event>
+ 		         <event>community.updated</event>
+ 		         <event>community.members.added</event>
+				 <event>community.members.removed</event>
+				 <event>community.members.modified</event>
+ 		       </lifecycle>
+            </widgetDef>
+            <widgetDef defId="RecentUpdates" description="updatesDescription" fixedPosition="true" helpLink="{helpSvcRef}/SSYGQH_KCCI/user/communities/t_com_updates.html" modes="view" navBarLink="{contextRoot}/service/html/community/updates?communityUuid={resourceId}&amp;filter=all" showInPalette="false" themes="wpthemeWide" uniqueInstance="true" url="{webresourcesSvcRef}/web/com.ibm.social.as.lconn/widgets/communitiesActivityStream.xml?etag={version}">
+                 <itemSet>
+                    <item name="atomFeedUrl" value="{opensocialSvcRef}/rest/ublog/c!{resourceId}/@all?format=atom"/>
+					<item name="atomFeedUrl.basic" value="{opensocialSvcRef}/basic/rest/ublog/c!{resourceId}/@all?format=atom"/>
+					<item name="atomFeedUrl.oauth" value="{opensocialSvcRef}/oauth/rest/ublog/c!{resourceId}/@all?format=atom"/>
+                 </itemSet>
+            </widgetDef>
+            <widgetDef defId="StatusUpdates" description="updatesDescription" fixedPosition="true" helpLink="{helpSvcRef}/SSYGQH_KCCI/user/communities/t_com_share_status.html" iconUrl="{webresourcesSvcRef}/web/com.ibm.oneui3.styles/imageLibrary/Icons/ComponentsGray/StatusUpdateGray16.png" modes="view edit search" navBarLink="{contextRoot}/service/html/community/updates?communityUuid={resourceId}&amp;filter=status" prerequisite="microblogging" showInPalette="true" themes="wpthemeWide" uniqueInstance="true" url="{webresourcesSvcRef}/web/com.ibm.social.as.lconn/widgets/communitiesActivityStream.xml?etag={version}">
+                 <itemSet>
+					<item name="atomFeedUrl" value="{opensocialSvcRef}/rest/ublog/urn:lsid:lconn.ibm.com:communities.community:{resourceId}/@all?format=atom"/>
+					<item name="atomFeedUrl.basic" value="{opensocialSvcRef}/basic/rest/ublog/urn:lsid:lconn.ibm.com:communities.community:{resourceId}/@all?format=atom"/>
+					<item name="atomFeedUrl.oauth" value="{opensocialSvcRef}/oauth/rest/ublog/urn:lsid:lconn.ibm.com:communities.community:{resourceId}/@all?format=atom"/>
+					<item name="searchUrl" value="{searchSvcRef}/atomfba/mysearch/results?scope=status_updates&amp;social=%7B%22type%22%3A%22community%22%2C%22id%22%3A%22{resourceId}%22%7D&amp;query={searchTerm}"/>
+					<item name="searchUrl.basic" value="{searchSvcRef}/atom/mysearch/results?scope=status_updates&amp;social=%7B%22type%22%3A%22community%22%2C%22id%22%3A%22{resourceId}%22%7D&amp;query={searchTerm}"/>
+					<item name="searchUrl.oauth" value="{searchSvcRef}/oauth/atom/mysearch/results?scope=status_updates&amp;social=%7B%22type%22%3A%22community%22%2C%22id%22%3A%22{resourceId}%22%7D&amp;query={searchTerm}"/>
+                 </itemSet>
+                 <lifecycle remoteHandlerAuthenticationAlias="connectionsAdmin" remoteHandlerURL="{newsInterSvcRef}/widget/communityHandler.do">
+                    <event>remote.app.added</event>
+                    <event>remote.app.removed</event>
+                    <event>remote.app.transfer</event>
+                    <event>community.visibility.changed</event>
+                    <event>community.updated</event>
+                    <event>community.org.changed</event>
+                    <event>community.prepare.delete</event>
+                </lifecycle>
+            </widgetDef>
+            <widgetDef defId="RelatedCommunities" description="relatedCommunitiesDescription" helpLink="{helpSvcRef}/SSYGQH_KCCI/user/communities/t_com_share_related_communities.html" iconUrl="{webresourcesSvcRef}/web/com.ibm.oneui3.styles/imageLibrary/Icons/ComponentsGray/CommunitiesGray16.png" modes="view fullpage" primaryWidget="false" showInPalette="true" themes="wpthemeThin wpthemeNarrow wpthemeWide wpthemeBanner" uniqueInstance="true" url="{communitiesSvcRef}/recomm/Recomm.xml?version={version}">
+                <itemSet>
+                  <item name="recommRoot" value="{communitiesSvcRef}/recomm"/>
+                  <item name="communitiesBaseUrl" value="{communitiesSvcRef}"/>
+                  <item name="version" value="{version}"/>
+				  <item name="atomPubUrl" value="{communitiesSvcRef}/recomm/atom_form/service?communityUuid={resourceId}"/>
+				  <item name="atomPubUrl.basic" value="{communitiesSvcRef}/recomm/atom/service?communityUuid={resourceId}"/>
+				  <item name="atomPubUrl.oauth" value="{communitiesSvcRef}/recomm/oauth/atom/service?communityUuid={resourceId}"/>
+				  <item name="feedUrl" value="{communitiesSvcRef}/recomm/atom_form/relatedCommunities?communityUuid={resourceId}&amp;ps=10"/>
+				  <item name="feedUrl.basic" value="{communitiesSvcRef}/recomm/atom/relatedCommunities?communityUuid={resourceId}&amp;ps=10"/>
+				  <item name="feedUrl.oauth" value="{communitiesSvcRef}/recomm/oauth/atom/relatedCommunities?communityUuid={resourceId}&amp;ps=10"/>
+                </itemSet>
+                <lifecycle remoteHandlerAuthenticationAlias="connectionsAdmin" remoteHandlerURL="{communitiesInterSvcRef}/recomm/handleEvent">
+                  <event>remote.app.added</event>
+                  <event>remote.app.removed</event>
+                  <event>community.prepare.delete</event>
+                  <event>community.visibility.changed</event>
+                  <event>community.updated</event>
+                </lifecycle>
+            </widgetDef>
+		    <!--
+		        The Linked Library widget allows you to connect to your existing IBM FileNet or IBM Content Manager document libraries.
+
+  		    <widgetDef defId="CustomLibrary" bundleRefId="lc_clib" url="{webresourcesSvcRef}/web/quickr.lw/widgetDefs/LibraryWidget_QCS_Connections.xml?etag={version}"
+		               description="CustomLibrary.description" modes="view edit fullpage" themes="wpthemeNarrow wpthemeWide wpthemeBanner wpthemeThin" primaryWidget="false"
+		               helpLink="{helpSvcRef}/SSYGQH_KCCI/user/communities/c_com_library_frame.html"
+		               iconUrl="{contextRoot}/nav/common/images/LinkedFiles.png"
+					   showFullWidgetDeleteConfirmation="false"
+					   showInExternalCommunities="true">
+		       <itemSet>
+		           <item name="proxyUrl" value="{contextRoot}/commonProxy" />
+		       </itemSet>
+		    </widgetDef>
+		    -->
+		    <widgetDef bundleRefId="lc_clib" defId="Library" description="Library.description" helpLink="{helpSvcRef}/SSYGQH_KCCI/user/communities/c_com_library_frame.html" iconUrl="{contextRoot}/nav/common/images/ManagedFiles.png" modes="view search edit fullpage" prerequisite="ecm_files" showInExternalCommunities="true" themes="wpthemeNarrow wpthemeWide wpthemeBanner wpthemeThin" url="{webresourcesSvcRef}/web/quickr.lw/widgetDefs/LibraryWidget_QCS_Connections.xml?etag={version}">
+		      <itemSet>
+		        <item name="proxyUrl" value="{contextRoot}/commonProxy"/>
+		        <item name="isLifecycle" value="true"/>
+		      </itemSet>
+		      <lifecycle remoteHandlerAuthenticationAlias="filenetAdmin" remoteHandlerURL="{ecm_filesInterSvcRef}/atom/communities/feed">
+		        <event>widget.added</event>
+		        <event>widget.removed</event>
+		        <event>widget.renamed</event>
+		        <event>community.members.added</event>
+		        <event>community.members.removed</event>
+		        <event>community.members.modified</event>
+		        <event>community.visibility.changed</event>
+		        <event>community.prepare.delete</event>
+		        <event>community.updated</event>
+		      </lifecycle>
+		    </widgetDef>
+		    <widgetDef defId="SharepointFiles" description="sharepointFilesDescription" helpLink="{helpSvcRef}/SSYGQH_KCCI/user/communities/t_com_add_SharePoint_to_Community.html" modes="fullpage view edit" showIfGatekeeperSet="SHAREPOINT_FILES_WIDGET" themes="wpthemeThin wpthemeNarrow wpthemeWide wpthemeBanner" uniqueInstance="true" url="{webresourcesSvcRef}/web/com.ibm.ic.webeditors.sharepoint/SharepointFrame.xml">
+            </widgetDef>
+
+          </definitions>
+          <!-- mandated widgets -->
+          <layout resourceSubType="default">
+              <page pageId="communityOverview">
+                <widgetInstance defIdRef="RecentUpdates" uiLocation="col2recentposts"/>
+                <widgetInstance defIdRef="Members" uiLocation="none"/>
+              </page>
+              <page pageId="recentUpdates">
+                <widgetInstance defIdRef="RecentUpdates" uiLocation="col2recentposts"/>
+                <widgetInstance defIdRef="MembersSummary" uiLocation="col3"/>
+              </page>
+              <page pageId="statusUpdates">
+                <widgetInstance defIdRef="MembersSummary" uiLocation="col3"/>
+              </page>
+              <page pageId="allCommunities">
+                <widgetInstance defIdRef="sand_recomComm" uiLocation="col1"/>
+               </page>
+              <page pageId="myCommunities">
+                <widgetInstance defIdRef="sand_recomComm" uiLocation="col1"/>
+              </page>
+              <page pageId="own">
+                <widgetInstance defIdRef="sand_recomComm" uiLocation="col1"/>
+              </page>
+              <page pageId="my">
+                <widgetInstance defIdRef="sand_recomComm" uiLocation="col1"/>
+              </page>
+              <page pageId="follow">
+                <widgetInstance defIdRef="sand_recomComm" uiLocation="col1"/>
+              </page>
+              <page pageId="invite">
+                <widgetInstance defIdRef="sand_recomComm" uiLocation="col1"/>
+              </page>
+              <page pageId="all">
+                <widgetInstance defIdRef="sand_recomComm" uiLocation="col1"/>
+              </page>
+              <page pageId="restricted">
+                <widgetInstance defIdRef="sand_recomComm" uiLocation="col1"/>
+              </page>
+              <page pageId="trash">
+                <widgetInstance defIdRef="sand_recomComm" uiLocation="col1"/>
+              </page>
+          </layout>
+        </widgets>
+        <templates>
+            <!-- default template will be used to display the default widgets -->
+            <template id="default">
+                <widgetInstance defIdRef="ImportantBookmarks" instanceId="ImportantBookmarks1" uiLocation="col3"/>
+                <widgetInstance defIdRef="MembersSummary" instanceId="MembersSummary1" uiLocation="col3"/>
+                <widgetInstance defIdRef="StatusUpdates" instanceId="StatusUpdates1" uiLocation="col2statusposts"/>
+                <widgetInstance defIdRef="description" instanceId="description1" uiLocation="col2"/>
+				<widgetInstance defIdRef="Forum" instanceId="ForumInstance1" uiLocation="col2"/>
+                <widgetInstance defIdRef="Bookmarks" instanceId="BookmarksInstance1" uiLocation="col2"/>
+                <widgetInstance defIdRef="Files" instanceId="FilesInstance1" uiLocation="col2"/>
+				<widgetInstance defIdRef="Tags" instanceId="Tags1" uiLocation="col1"/>
+                <widgetInstance defIdRef="RichContent" ifGatekeeperSet="COMMUNITIES_TOP_MENU_WITH_BANNER_DEFAULT_LAYOUT" instanceId="RichContent1" uiLocation="banner"/>
+            </template>
+        </templates>
+    </resource>
+</config>

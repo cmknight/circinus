@@ -1,0 +1,10 @@
+	<widgetDef
+	defId="Sharepoint Files"
+	themes="wpthemeThin wpthemeNarrow wpthemeWide wpthemeBanner"
+	uniqueInstance="false"
+	showIfGatekeeperSet="SHAREPOINT_FILES_WIDGET" 
+	url="https://dubxpcvm3114.mul.ie.ibm.com:9444/connections/resources/web/com.ibm.lconn.sharepoint/SharepointFrame.xml"
+	modes="edit fullpage view"
+	description="Shows Sharepoint files on Connections."
+	>
+	</widgetDef>

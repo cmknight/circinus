@@ -1,0 +1,160 @@
+.cmkCss {
+    /*display: none;*/
+}
+
+/* CMK comment*/
+.lotusui30 .lotusTitleBar2 .lotusHeading {
+  display:none;
+}
+.dimGrey {
+  background-color: #3D3C33;
+}
+
+.dimGreyDarker {
+  background-color: #3C3335;
+}
+
+.slateGrey {
+  background-color: #5D5B5E;
+}
+
+.lightSlateGrey {
+  background-color: #959499;
+}
+
+.lotusui30_body .lotusFrame {
+  /* background-color: #959499; */
+}
+
+.lightSteelBlue {
+  background-color: #C1C0C5;
+}
+
+body.lotusui30.lotusmain {
+    /* background: url(/com.ibm.lconn.core.styles/images/Connections Portal Background.jpg); */
+}
+
+body.lotusui30.lotusLogin2 {
+    background-color: #010101;
+    background:#010101;
+    /* background: url(/com.ibm.lconn.core.styles/images/Connections Portal Background.jpg); */
+    /* background-size: 100%; */
+}
+
+.lotusui30 .lotusBanner .lotusLogo {
+    margin-right: 20px;
+    background: url(/com.ibm.lconn.core.styles/images/logoWhite.png) center / contain no-repeat;
+    width: 300px;
+    margin-top: 5px;
+}
+.lotusui30 .lotusBanner {
+    font-size: small;
+}
+
+.lotusui30 div.lotusBanner .lotusLogo .lotusAltText {
+    text-indent: -9000px;
+}
+
+ul#headerMenuContainer li.buttonCircleNavLi {
+  padding-right: 10px;
+}
+ul#headerMenuContainer a.buttonCircNav {
+  padding-left: 12px;
+  padding-right: 12px;
+  background-color: #1c5c7f;
+  border-radius: 5px;
+  color: white;
+  padding: .5em;
+  text-decoration: none;
+  margin-top: 6px;
+}
+.customLoginHeading {
+  text-align: center;
+}
+.lotusui30 div.lotusBanner .lotusRightCorner {
+  background:#25363f;
+}
+
+.navbar.navbarCircinus {
+  margin-bottom:0px;
+}
+.bg-circinusBlack {
+  background:black;
+}
+
+@media (min-width: 1500px) {
+.lotusFrame .container {
+      max-width: 1700px;
+    }
+}
+
+.xccstyle .widget .xccWidget .wheader .wtitle {
+  color:#ffffff;
+}
+
+/* designer tweaks */
+/** this is for  widgets on homepage */
+.lotusui30 .lotusContent .lotusWidget, .lotusui30 .lotusPortlet {  
+  /** background-color: #010101; */
+}
+
+/* Landing Page */
+.lotusui30_body.xccstyle {
+  color: #292929;
+  background-color: #000;
+}
+
+/*
+.lotusui30_layout .lotusMain .lotusContent:before {
+  background-color: #000;
+}
+*/
+
+/**
+* background color for dashboards
+#16191E
+*/
+
+/*  Widget Header */
+
+.xccstyle .xccWidget .wheader .wtitle {
+  color: #fff;
+  font-size: 18px;
+  max-width: 85%;
+  display: inline-block;
+  position: relative;
+  top: 4px;
+  z-index: 4;
+}
+
+/* Widget Background */
+
+.xccstyle .xccWidget .wheader {
+  /* border-bottom: 1px solid #D2D2D2; */
+  overflow: hidden;
+  padding-bottom: 5px;
+  position: relative;
+  min-height: 28px;
+  box-sizing: content-box!important;
+}
+
+.xccstyle .xccWidget {
+  box-sizing: border-box;
+  /* box-shadow: 0 1px 3px 0 #EEE; */
+  background-color: #26363f;
+  /* border: 1px solid #D2D2D2; */
+  margin: 15px 0 0 0;
+  min-height: 35px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Tweet view links */
+
+.container a:not(.xccStaticLink):not(.download), .container a:not(.xccStaticLink):not(.download):visited, .ui-widget a:not(.xccStaticLink):not(.download), .ui-widget a:not(.xccStaticLink):not(.download):visited {
+  color: #fff;
+  display: inline-block;
+  font-size: 12px;
+  word-wrap: break-word;
+  vertical-align: top;
+}

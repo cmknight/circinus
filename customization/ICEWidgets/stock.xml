@@ -1,0 +1,53 @@
+<!-- ***************************************************************** -->
+<!--                                                                   -->
+<!-- IBM Confidential                                                  -->
+<!--                                                                   -->
+<!-- OCO Source Materials                                              -->
+<!--                                                                   -->
+<!-- Copyright IBM Corp. 2007, 2015                                    -->
+<!--                                                                   -->
+<!-- The source code for this program is not published or otherwise    -->
+<!-- divested of its trade secrets, irrespective of what has been      -->
+<!-- deposited with the U.S. Copyright Office.                         -->
+<!--                                                                   -->
+<!-- ***************************************************************** -->
+
+<!-- 5724-S68                                                          -->
+<iw:iwidget id="helloWorld2" xmlns:iw="http://www.ibm.com/xmlns/prod/iWidget" iScope="stock" allowInstanceContent="true" supportedModes="view edit print help" mode="view" lang="en">
+    <!-- default style value, it can be overwritten-->
+    <iw:itemSet id="attributes" private="true" onItemSetChanged="changeItemSet">
+        <!-- one per Item in the ItemSet -->
+        <iw:item id="broker"  readOnly="false"    value="Etrade" />
+        <iw:item id="company"  value="IBM" />
+        <iw:item id="stock" value="125"/>
+   </iw:itemSet>
+   <iw:event id="onGetCompanyName" eventDescName="getCompanyName"  handled="true" onEvent="updateQuote" />
+   <iw:event id="sendStockData" eventDescName="sendStockData"  published="true" onNewWire="sendData" />
+   <iw:eventDescription  id="getCompanyName"  payloadType="string" description="event to get companyname"  lang="en" >
+   </iw:eventDescription>
+   <iw:eventDescription  id="sendStockData"  payloadType="stockData" description="event to send stockData"  lang="en" >
+   </iw:eventDescription>
+   <iw:resource uri="stock.js" />
+   <iw:payloadDef name="stockData">
+		<iw:payloadDef name="company" type="string" defaultValue="" description="this field shows company name"/>
+        <iw:payloadDef name="stock" type="string" defaultValue="" description="this field shows stock quote"/>
+    </iw:payloadDef>
+    <iw:content mode="view">
+        <![CDATA[    
+            <div><span id="company" class="companyLabel">loading...</span> Stock Quote: <span id="stock">loading...</span></div>
+            <div>Broker: <span id="broker">loading...</span></div>
+            <div><input type="button" style="height=25px" name="send" value="Send Data" onclick="iContext.iScope().sendData()"/></div>
+            <div><input type="button" style="height=25px" name="configure" value="Edit Broker" onclick="iContext.iScope().editBroker()"/></div>
+        ]]> 
+     </iw:content>
+    <iw:content mode="edit">
+       <![CDATA[    
+           <div> <select class="brokerSelection"  size="1">
+                            <option value="Etrade">Etrade</option>
+                            <option selected value="Ameritrade">Ameritrade</option>
+                     </select>
+           </div>
+           <div><input type="button" name="done" value="Done" onclick="iContext.iScope().switchBroker();"/></div>
+        ]]> 
+    </iw:content>
+</iw:iwidget>

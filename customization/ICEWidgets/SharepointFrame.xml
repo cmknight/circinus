@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<iw:iwidget 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:iw="http://www.ibm.com/xmlns/prod/iWidget" 
+	id="SharepointIntf" 
+	supportedModes="fullpage view edit"
+	iScope="SharepointIntfScope"
+	>
+	
+	<!-- supportedModes="edit view search fullpage" -->	
+	
+	
+	<iw:resource src="resources/logging.js" />
+	<iw:resource src="css/inner_shared_file.css" />
+	<iw:resource src="SharepointIntf.js" />
+	
+	
+
+
+<!-- MODES NOT IMPLEMENTED
+
+
+
+	
+	<iw:content mode="search">
+		<![CDATA[
+		
+		<div>
+			<h1>Content Mode Search</h1>
+		</div>
+		
+		<div>No search feature has been implemented yet.</div>
+		
+		]]>
+	</iw:content>
+	
+	-->
+	
+
+	
+	<iw:content mode="edit">
+		<![CDATA[
+		
+	
+		
+		
+		
+		<form class="lotusForm" action="" aria-labelledby="editCommunityTitle" role="application" method="post" enctype="multipart/form-data" name="sharepointFilesEditForm">
+		
+		<table class="lotusFormTable commFormText" cellspacing="0" cellpadding="0" border="0" role="presentation">
+			<tbody>
+			
+			
+
+			<tr>
+					<td colspan="3">
+					<div id="edit_feedback">
+					</div>					
+				</td>
+
+			</tr>
+				
+				
+				<tr class="lotusFormFieldRow">
+					<td class="lotusFormTitle" colspan="3">
+						<h2 class="flushLeft">Configure Sharepoint Files
+						
+						</h2>
+					</td>
+				</tr>
+
+				
+				
+				
+				<tr class="lotusFormFieldRow">
+					<td class="lotusFormLabel" width="15%">
+						<label for="editSharepointURL">
+							<span class="lotusFormRequired">*</span>
+							URL:
+							</label>
+						<td>
+							<table width="100%" cellspacing="0" cellpadding="0" border="0" style="table-layout:fixed" role="presentation">
+								<tbody>
+									<tr>
+										<td>
+										<input id="editSharepointURL" class="lotusText bidiAware" type="text" value="" name="url" aria-required="true">
+										</td>
+									</tr>
+								
+								</tbody>
+							</table>
+						</td>
+					</td>
+				</tr>
+				
+				<tr class="lotusFormFieldRow">
+					<td class="lotusFormLabel" width="15%">
+						<label id="cssStyleLabel" for="cssStyle">
+							Style:
+						</label>
+					</td>
+				<td>
+					<select id="cssStyle" onchange="iContext.iScope().onChangeStyleSelect();" role="listbox" area-labelledby="cssStyleLabel" size="1" name="cssStyle">
+				
+						<option role="option" value="style1" aria-selected="false">Style 1</option>
+						<option role="option" value="style2" aria-selected="false">Style 2</option>
+						<!-- DISABLING CUSTOM OPTION: <option role="option" value="custom" aria-selected="false">Custom</option>-->
+					</select>
+				</td>
+
+						
+
+
+
+				</tr>
+				
+				<!-- DISABLING CUSTOM OPTION
+				<tr class="lotusFormFieldRow">
+					<td></td>
+					<td>
+							<table width="100%" cellspacing="0" cellpadding="0" border="0" style="table-layout:fixed" role="presentation">
+								<tbody>
+									<tr>
+										<td>
+										<input id="customCSSURL" disabled class="lotusText bidiAware" type="text" value="" name="css_url" aria-required="true">
+										</td>
+									</tr>
+								
+								</tbody>
+							</table>
+						</td>
+
+
+				</tr>
+				-->
+					
+				
+				<tr>
+				<td class="commFormBottomRow"> * Required </td>
+				<td></td>
+				</tr>
+			
+			<tr class="lotusFormFieldRow">
+				<td class="lotusFormFooter commFormFooter" colspan="3">
+					<input id="SP_save_btn" type="button" class="lotusFormButton" onClick="iContext.iScope().ProcessForm();"  value="Save" name="SharepointJustSave">
+					<input id="SP_cancel_btn" type="button" class="lotusFormButton" onClick="iContext.iScope().cancelEditForm(); return false;"  value="Cancel" name="SharepointJustCancel">
+
+				</td>
+		
+			</tr>
+		</tbody>
+	</table>
+</form>
+		
+		
+		
+	
+		
+		]]>
+	</iw:content>
+	
+	
+	<iw:content mode="view">
+	
+	<![CDATA[
+	<div id="loadingDiv" class="loadingimg" style="display:none"> 
+		
+	</div>
+	
+	<tbody>
+			<tr>
+				<td colspan="3">
+				<div id="view_msg_feedback">
+				</div>					
+				</td>
+
+			</tr>
+		</tbody>
+	</table>
+	
+	<div class="contentPage">
+	
+	</div>
+		]]>
+	</iw:content>
+	
+	
+	<iw:content mode="fullpage">
+		<![CDATA[
+		
+		
+	<div id="loadingDiv" class="loadingimg" style="display:none"> 
+		
+	</div>
+	
+	<table class="lotusFormTable commFormText" cellspacing="0" cellpadding="0" border="0" role="presentation">
+		<tbody>
+			
+			
+
+			<tr>
+				<td colspan="3">
+				<div id="view_msg_feedback">
+				</div>					
+				</td>
+
+			</tr>
+		</tbody>
+	</table>
+
+	<div class="contentDiv">
+		<iframe 
+			id="pc3" 
+			width="100%" 
+			height="100%" 
+			style="border-top-width: 0px; border-right-width: 0px; border-left-width: 0px; border-bottom-width: 0px;">
+		</iframe> 
+	</div>		
+		]]>
+	</iw:content>
+	
+	
+</iw:iwidget>

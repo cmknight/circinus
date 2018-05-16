@@ -1,0 +1,47 @@
+<%----%><li id="circMenu"><%--
+   --%><span id="circMenuLabel" aria-label="circMenuLabel"><%--
+   --%><a class="circMenuLink" title="circMenuLink" id="circMenuLink"
+                  onmouseover="dojo.require('lconn.core.header');lconn.core.header.menuMouseover(this);"
+                  onclick="dojo.require('lconn.core.header');lconn.core.header.menuClick(this);"
+                  onfocus="dojo.require('lconn.core.header');lconn.core.header.menuFocus(this);"
+                  role="button"
+                  _lconn_menuid="lconnheadermenu-circ"
+                  aria-label="lconnheadermenu-circ"
+                  src="${pageContext.request.contextPath}/nav/templates/menu/circinus.jsp"
+                  href="javascript:;"><%--
+DO NOT REMOVE THIS SPACE --%> <%--
+--%><span>Circinus</span><%--
+        --%></a><%--
+     --%></span></li>
+
+
+><%--
+
+         The Profiles menu which is enabled for internal users. The JSP /nav/templates/menu/people.jsp is used to populate the menu when
+         it is opened.
+
+         --%><c:if test="${services.profiles and not isUserExternal}"><%--
+            --%><lc-ui:serviceLink serviceName="profiles" var="urlProfiles" /><%--
+
+            --%><li id="lotusBannerProfiles" class="<c:if test="${first}">lotusFirst</c:if> <c:if test="${'profiles' == appName}">lotusSelected</c:if>"><%--
+               --%><a onmouseover="dojo.require('lconn.core.header');lconn.core.header.menuMouseover(this);"
+                      onclick="dojo.require('lconn.core.header');lconn.core.header.menuClick(this);"
+                      onfocus="dojo.require('lconn.core.header');lconn.core.header.menuFocus(this);"
+                      role="button"
+                      _lconn_menuid="lconnheadermenu-people"
+                      aria-label="<fmt:message key="connections.component.name.profiles" />"
+                      src="<lc-cache:uri template="{staticLanguageRoot}/nav/templates/menu/people.jsp" />"
+                      href="<c:out value="${urlProfiles}/"/>"
+                      errormessage="<fmt:message key="profiles.error.unavailable.title" />"><%--
+                  --%><img alt="" role="presentation" src="<lc-ui:blankGif />" class="lconnBannerIcon lconnSprite lconnSprite-iconProfilesBlue16"><%--
+                  --%><fmt:message key="connections.component.name.profiles" /><%--
+                  --%> <img role="presentation" alt="" src="<lc-ui:blankGif />" class="lotusArrow lotusDropDownSprite"><span class="lotusAltText">&#9660;</span><%--
+
+               --%></a><%--
+            --%></li><%--
+
+            --%><c:set var="first" value="false" scope="page" /><%--
+         --%></c:if><%--
+
+      --%></ul><%--
+      --%>

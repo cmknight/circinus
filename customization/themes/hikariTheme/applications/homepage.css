@@ -1,0 +1,272 @@
+.lotusui30 .lotusSearch .lotusScope .lotusIcon,
+.lotusui30 .lotusTitleBar2 .lotusInner .lotusHeading {
+    display: none
+}
+
+.lotusui30 .lconnHomepageColLeft {
+    position: static
+}
+
+.lotusui30.lotusAbout .lotusui30_layout .lotusMain .lotusContent {
+    border: 1px solid #D2D2D2;
+    background-color: #FFF;
+    padding: 20px
+}
+
+.noBorder {
+    border: none!important
+}
+
+.lotusWidgetTable {
+    margin-top: 27px;
+    border-spacing: 0
+}
+
+.lotus2Col {
+    padding: 0
+}
+
+.lotusHomepageDropDown {
+    background-image: url(/com.ibm.lconn.core.styles.oneui3/images/lotusSprite-8bit.png)
+}
+
+.lotusui30 .lotusSection2 .lotusSectionBody {
+    margin-left: 0
+}
+
+.tundra .dijitTabContainerLeft-tabs .dijitTab,
+.tundra .dijitTabContainerRight-tabs .dijitTab {
+    border-color: #fff
+}
+
+.tundra .dijitTabContainerLeft-container {
+    left: 113px!important
+}
+
+.startContent .dijitTabInner.dijitTabContent {
+    padding: 15px;
+    background-color: #FAFAFA
+}
+
+.gettingStartedVisitorComm a.gettingStartedVisitorCommIcon,
+.gettingStartedVisitorFiles a.gettingStartedVisitorFilesIcon,
+.gettingStartedVisitorHomepage a.gettingStartedVisitorHomepageIcon {
+    float: left;
+    padding: 10px 15px 0 0
+}
+
+.lotusui30 .lotusTitleBarExt .lotusInlinelist {
+    position: absolute
+}
+
+.lotusui30 .lotusFlyout .lotusWrapper {
+    border-radius: 0;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #f1f1f1
+}
+
+.lotusui30 .lotusBoard .lotusStream>li {
+    border-top-width: 0;
+    position: relative
+}
+
+.tagManagerContentNode {
+    width: 446px
+}
+
+.lotusui30 .lotusForm2 input.lotusCheckbox {
+    margin: 5px 3px 0 0
+}
+
+.lotusui30 .lotusMenu .lotusUnreadBadge {
+    right: 190px
+}
+
+.lotusui30dojo .lotusWidgetBody .datePickerContainer td.dijitCalendarCurrentMonth {
+    font-weight: 400
+}
+
+.lotusui30dojo .lotusWidgetBody .datePickerContainer td.dijitCalendarCurrentDate.dijitCalendarCurrentMonth {
+    font-weight: 700
+}
+
+.lotusui30dojo .lotusWidgetBody td.dijitCalendarDateTemplate {
+    width: 14%;
+    letter-spacing: 0
+}
+
+.lotusui30dojo .lotusWidgetBody .dijitCalendarDateTemplate span.dijitCalendarDateLabel {
+    padding: 5px 3px
+}
+
+.lotusui30 .lotusMenu .lotusMenuSection {
+    margin: 0;
+    padding: 0;
+    overflow: visible
+}
+
+.lotusui30 .lotusMenu .lotusMenuSection:first-child:before {
+    content: none
+}
+
+.lotusui30 div.lotusTitleBar2 .lotusInner {
+    overflow: visible;
+    height: 2em
+}
+
+.lotusui30_layout .lotusColRight {
+    margin-top: 25px
+}
+
+.lotusui30_body .lotusMain {
+    padding-top: 0
+}
+
+.lotusui30.hasSideNav .lotusTitleBar2 .lotusInner .titleBarBody {
+    margin-top: 0;
+    margin-left: 27px;
+    margin-right: 277px;
+    display: block;
+    position: absolute
+}
+
+.lotusui30 .lconnHomepageMentionsAt,
+.lotusui30 .lotusMenu .lconnStreamIcon {
+    display: none
+}
+
+.lotusui30.hasSideNav .lotusTitleBar2 .lotusInner .titleBarBody#hpUserPhoto {
+    z-index: 1
+}
+
+.lotusui30 .lotusTitleBar2 .lotusInner .titleBarBody img {
+    left: 27px;
+    top: 20px;
+    z-index: 1;
+    border-radius: 51px
+}
+
+#homepageLeftNavigationMenuContainer {
+    margin-top: 85px
+}
+
+#homepageLeftNavigationMenuContainer.isSticky {
+    position: fixed;
+    top: 10px;
+    width: 215px;
+    margin-top: 0
+}
+
+.paletteExpanded #homepageLeftNavigationMenu {
+    margin-top: 145px
+}
+
+.lotusui30 .lotusMenu .lconnHomepage-myNotifications .lconnStreamIcon {
+    background-position: -240px 0
+}
+
+.lotusui30 .lotusMenu .lconnHomepage-myNotifications a:focus .lconnStreamIcon,
+.lotusui30 .lotusMenu .lconnHomepage-myNotifications a:hover .lconnStreamIcon {
+    background-position: -256px 0
+}
+
+.lotusui30 .lotusMenu .lconnHomepage-myNotifications.lotusSelected a .lconnStreamIcon {
+    background-position: -272px 0
+}
+
+.lotusui30 .lotusMenu .lconnHomepage-atMentions .lconnStreamIcon {
+    background-position: -144px 0
+}
+
+.lotusui30 .lotusMenu .lconnHomepage-atMentions a:focus .lconnStreamIcon,
+.lotusui30 .lotusMenu .lconnHomepage-atMentions a:hover .lconnStreamIcon {
+    background-position: -160px 0
+}
+
+.lotusui30 .lotusMenu .lconnHomepage-atMentions.lotusSelected a .lconnStreamIcon {
+    background-position: -176px 0
+}
+
+.lotusui30 .lotusMenu .lconnHomepage-actionRequired .lconnStreamIcon {
+    background-position: -192px 0
+}
+
+.lotusui30 .lotusMenu .lconnHomepage-actionRequired a:focus .lconnStreamIcon,
+.lotusui30 .lotusMenu .lconnHomepage-actionRequired a:hover .lconnStreamIcon {
+    background-position: -208px 0
+}
+
+.lotusui30 .lotusMenu .lconnHomepage-actionRequired.lotusSelected a .lconnStreamIcon {
+    background-position: -224px 0
+}
+
+.lotusui30 .lotusMenu .lconnHomepage-saved .lconnStreamIcon {
+    background-position: -288px 0
+}
+
+.lotusui30 .lotusMenu .lconnHomepage-saved a:focus .lconnStreamIcon,
+.lotusui30 .lotusMenu .lconnHomepage-saved a:hover .lconnStreamIcon {
+    background-position: -304px 0
+}
+
+.lotusui30 .lotusMenu .lconnHomepage-saved.lotusSelected a .lconnStreamIcon {
+    background-position: -320px 0
+}
+
+.lotusui30 .lotusMenu .lconnHomepage-discover .lconnStreamIcon {
+    background-position: -336px 0
+}
+
+.lotusui30 .lotusMenu .lconnHomepage-discover a:focus .lconnStreamIcon,
+.lotusui30 .lotusMenu .lconnHomepage-discover a:hover .lconnStreamIcon {
+    background-position: -352px 0
+}
+
+.lotusui30 .lotusMenu .lconnHomepage-discover.lotusSelected a .lconnStreamIcon {
+    background-position: -368px 0
+}
+
+.lconnHomepageMyPage .lotusui30_layout .lotusMain .lotusContent {
+    padding: 0
+}
+
+.lotusui30 .lotusMenu .lconnHomepageMyPage .lconnStreamIcon {
+    background-position: -384px 0
+}
+
+.lotusui30 .lotusMenu .lconnHomepageMyPage a:focus .lconnStreamIcon,
+.lotusui30 .lotusMenu .lconnHomepageMyPage a:hover .lconnStreamIcon {
+    background-position: -400px 0
+}
+
+.lotusui30 .lotusMenu .lconnHomepageMyPage.lotusSelected a .lconnStreamIcon {
+    background-position: -416px 0
+}
+
+.lotusui30 .lotusMenu .lconnHomepageAdmin .lconnStreamIcon {
+    background-position: -432px 0
+}
+
+.lotusui30 .lotusMenu .lconnHomepageAdmin a:focus .lconnStreamIcon,
+.lotusui30 .lotusMenu .lconnHomepageAdmin a:hover .lconnStreamIcon {
+    background-position: -448px 0
+}
+
+.lotusui30 .lotusMenu .lconnHomepageAdmin.lotusSelected a .lconnStreamIcon {
+    background-position: -464px 0
+}
+
+#gettingStartedTitle {
+    font-size: 1.5em;
+    line-height: 1.2;
+    font-weight: 700
+}
+
+.lotusui30 .lotusWidget div a.lotusIcon {
+    float: right
+}
+
+.lotusui30 .lotusTitleBarExt .lotusInlinelist li.lotusFirst {
+    margin: -5px 0 0
+}

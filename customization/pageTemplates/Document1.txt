@@ -1,0 +1,36 @@
+<div style="display:hidden">
+  <div id="tweetTemplateWrapper">
+    <!-- <div id="tweetTemplate" class="row"> -->
+        <li class="media">
+          <div class="col-md-2" >
+            <div>
+              <a href="##profileURL##">
+                <img class="align-self-center mr-3" src="##profileImageURL##"> </a>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <span title="Grand Canyon NPS" data-scribe="element:name">##profileName## ##profileAt## - ##tweetTime##</span>
+            <p class="timeline-Tweet-text" lang="en" dir="ltr">##tweetText##</p>
+          </div>
+          <div class="col-md-2">
+            <a class="btn btn-primary center-block" href="#">##tweetURLButton##</a>
+          </div>
+        </li>    
+    </div>    
+  </div>
+</div>
+
+
+http://cdn.date-fns.org/v1.9.0/date_fns.min.js
+
+https://twitter.com/i/web/status/990814508842213376
+
+
+9809
+
+
+./wsadmin.sh -lang jython -user wasadmin -password ses03pwd -port 8879
+
+execfile("connectionsConfig.py")
+LCConfigService.checkOutConfig("/tmp","localhostCell01")
+LCConfigService.checkInConfig("/tmp","localhostCell01")
