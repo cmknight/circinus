@@ -52,15 +52,20 @@ pageContext.setAttribute("languageSettings", com.ibm.ventura.internal.config.hel
 
 --%><c:if test="${not mtConfig.enabled}"><%--
 --%><div id="removeBlankFooter"></div>
-<footer class="footer circinusFooter">
-  <div class="container">
-       <div class="row">
-         <div class="col-md-3"></div>
-         <div class="col-md-3"></div>
-         <div class="col-md-5"><div class="circinusFooterLogo"><span class="lotusAltText">IBM Connections</span></div><a href="mailto:chris.knight@asponte.com">Contact Support</a></div>
-       </div>
- </div>
-</footer>
+<footer class="footer circinusFooter"> 
+  <div class="container"> 
+   <div class="row"> 
+    <div class="col-md-3"></div> 
+    <div class="col-md-3"><a href="mailto:chris.knight@asponte.com">Contact Support</a></div> 
+    <div class="col-md-5">
+     <div class="circinusFooterLogo">
+      <span class="lotusAltText">IBM Connections</span>
+     </div>
+     
+    </div> 
+   </div> 
+  </div> 
+ </footer>
 <%--
 --%></c:if><%--
 
