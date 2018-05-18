@@ -51,12 +51,84 @@ pageContext.setAttribute("languageSettings", com.ibm.ventura.internal.config.hel
    Footer links are disabled in multitenant enabled configurations.
 
 --%><c:if test="${not mtConfig.enabled}"><%--
---%><div id="removeBlankFooter"></div>
-<footer class="footer">
-  <div class="container">
-    <span class="footerLinks"><a href="mailto:chris.knight@asponte.com">Contact Support</a></span><span class="lotusLogo"></span>
-  </div>
-</footer><%--
+--%><div id="removeBlankFooter"></div><%--
+--%><ul><%--
+
+         The link to the Homepage.  If Homepage is not installed the "Home" link
+         points to the current application
+
+               --%><li><%--
+                  --%><c:if test="${services.homepage}"><%--
+                     --%><lc-ui:serviceLink serviceName="homepage" var="urlHomepage" /><%--
+                     --%><a href="<c:out value="${urlHomepage}/" />"><%--
+                        --%><fmt:message key="label.footer.connections.home" /><%--
+                     --%></a><%--
+                  --%></c:if><%--
+                  --%><c:if test="${!services.homepage}"><%--
+                     --%><a href="${pageContext.request.contextPath}/"><%--
+                        --%><fmt:message key="label.footer.connections.home" /><%--
+                     --%></a><%--
+                  --%></c:if><%--
+               --%></li><%--
+
+
+         The help links.  Points to the end-user help for the current application, and to the
+         public IBM forums for IBM Connections
+
+               --%><lc-ui:templateLink key="help.help" appname="${appName}"><fmt:message key="label.footer.help.help" /></lc-ui:templateLink><%--
+               --%><li><%--
+                  --%><a href="<c:out value="http://www-10.lotus.com/ldd/lcforum.nsf" />"><%--
+                     --%><fmt:message key="label.footer.help.forums" /><%--
+                  --%></a><%--
+               --%></li><%--
+
+
+         The tool links.  The browser plugin link is the "How to Bookmark" link which appears
+         in most but not all applications.  The metrics link is displayed to users in the
+         metrics-reader role (which is 'Everyone' by default) and shows statistical info about
+         each application.
+
+               --%><c:if test="${services.bookmarklet}"><%--
+               --%> <lc-ui:templateLink key="tools.browserplugins" appname="${appName}"><fmt:message key="label.footer.tools.browserplugins" /></lc-ui:templateLink><%--
+               --%></c:if><%--
+               --%><lc-ui:templateLink key="tools.adminpage" className="lotusAdminLink" appname="${appName}" test="${isAdmin}"><fmt:message key="label.footer.tools.adminpage" /></lc-ui:templateLink><%--
+
+               --%><c:if test="${services.metrics}"><%--
+                  --%><li id="lotusBannerFooterMetrics" style="display:none"><%--
+                      --%><lc-ui:serviceLink serviceName="metrics" var="urlMetrics" /><%--
+                      --%><a class="lotusMetricsReaderLink" href="<c:out value="${urlMetrics}/" />"><%--
+                          --%><fmt:message key="label.footer.tools.metrics" /><%--
+                      --%></a><%--
+                  --%></li><%--
+               --%></c:if><%--
+
+
+         The mobile UI link gives a chance to mobile clients who chose to browse the desktop UI to switch back to the mobile UI.
+
+               --%><c:if test="${services.mobile}"><%--
+                  --%><li id="lconnFooterMobile" class="lotusHidden"><%--
+                      --%><a id="lconnMobileRedirectLink" href="javascript:;"><%--
+                          --%><fmt:message key="label.footer.tools.mobileui" /><%--
+                      --%></a><%--
+                  --%></li><%--
+               --%></c:if><%--
+
+         The about links point to the IBM.com IBM Connections product site and the public
+         feedback forum.
+
+               --%><lc-ui:templateLink key="about.about" appname="${appName}"><fmt:message key="label.footer.about.about" /></lc-ui:templateLink><%--
+               --%><li><%--
+                  --%><a href="<c:out value="http://www-306.ibm.com/software/lotus/products/connections/" />"><%--
+                     --%><fmt:message key="label.footer.about.connectionsonline" /><%--
+                  --%></a><%--
+               --%></li><%--
+               --%><li><%--
+                  --%><a href="<c:out value="http://www.lotus.com/ldd/doc/cct/nextgen.nsf/feedback_choice?OpenForm&Context=footer+ventura+NoTitle+4.5" />"><%--
+                     --%><fmt:message key="label.footer.about.submitfeedback" /><%--
+                  --%></a><%--
+               --%></li><%--
+            --%></ul><%--
+
 --%></c:if><%--
 
 

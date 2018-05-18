@@ -1,3 +1,7 @@
+body {
+  margin-bottom: 60px; /* Margin bottom by footer height */
+}
+
 .cmkCss {
     /*display: none;*/
 }
@@ -6,6 +10,33 @@
 .lotusui30 .lotusTitleBar2 .lotusHeading {
   display:none;
 }
+
+.landingV2 {
+  margin-bottom: 60px;
+}
+
+.lotusui30 .lotusFooter {
+  max-width: 100%;
+}
+.footer {
+  position: absolute;
+  /* bottom: 0; */
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  background-color: #25363f;
+}
+
+.footerLinks a, a:hover, a:active, a:visited { color: white; }
+
+.circinusBlueBackgroundColor {
+  background-color: #25363f;
+}
+
+.circinusBlue {
+  background: #25363f;
+}
+
 .dimGrey {
   background-color: #3D3C33;
 }
@@ -101,7 +132,7 @@ ul#headerMenuContainer a.buttonCircNav {
 /* Landing Page */
 .lotusui30_body.xccstyle {
   color: #292929;
-  background-color: #000;
+  background-color: #959499;
 }
 
 /*
