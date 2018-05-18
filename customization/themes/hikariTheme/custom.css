@@ -27,7 +27,21 @@ body {
   background-color: #25363f;
 }
 
-.footerLinks a, a:hover, a:active, a:visited { color: white; }
+.lotusui30 .lotusFooter .footerLinks a, a:hover, a:active, a:visited { color: white; }
+
+.lotusui30 .circinusFooter .circinusFooterLogo {
+  margin-right: 20px;
+  background: url(/com.ibm.lconn.core.styles/images/logoWhite.png) center / contain no-repeat;
+  width: 300px;
+  margin-top: 5px;
+}
+.lotusui30 .lotusBanner {
+  font-size: small;
+}
+
+.lotusui30 div.circinusFooter .circinusFooterLogo .lotusAltText {
+  text-indent: -9000px;
+}
 
 .circinusBlueBackgroundColor {
   background-color: #25363f;
